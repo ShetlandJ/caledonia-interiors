@@ -344,6 +344,7 @@
   .hours li:first-child{ border-top:1px solid var(--rule); }
   .hours .day{ color:var(--ink-soft); }
   .hours .closed{ color:var(--teal-soft); }
+  .hours .appt{ color:var(--teal); }
 
   .map{
     border:1px solid var(--rule);
@@ -384,6 +385,14 @@
     .hero-copy{ padding-bottom:clamp(48px, 6vw, 88px); }
     .hero-figure img{ height:clamp(440px, 46vw, 680px); }
     .visit-grid{ grid-template-columns:1.05fr .95fr; }
+  }
+
+  @media (max-width:640px){
+    .site-inner{ gap:22px; }
+    nav.site{ gap:22px; width:100%; }
+    /* the measure-up CTA is a section of its own further down —
+       dropping it here keeps the nav to a single tidy row */
+    nav.site a[href="#measure-up"]{ display:none; }
   }
 
   @media (max-width:520px){
@@ -517,7 +526,7 @@
             <li><span class="day">Wednesday</span><span>9:00 &ndash; 16:00</span></li>
             <li><span class="day">Thursday</span><span>9:00 &ndash; 16:00</span></li>
             <li><span class="day">Friday</span><span>9:00 &ndash; 16:00</span></li>
-            <li><span class="day">Saturday</span><span class="closed">Closed</span></li>
+            <li><span class="day">Saturday</span><span class="appt">By appointment</span></li>
             <li><span class="day">Sunday</span><span class="closed">Closed</span></li>
           </ul>
         </div>
