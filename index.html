@@ -31,8 +31,10 @@
     --serif: "Cormorant Garamond", "Times New Roman", serif;
     --sans:  "Montserrat", "Helvetica Neue", Arial, sans-serif;
 
-    --gutter: 24px;
-    --measure: 1120px;
+    --gutter: clamp(24px, 4vw, 56px);
+    --measure: 1360px;
+    /* distance from the window edge to the content's left edge */
+    --edge: max(var(--gutter), calc((100% - var(--measure)) / 2 + var(--gutter)));
   }
 
   *,*::before,*::after{ box-sizing:border-box; }
@@ -165,12 +167,13 @@
 
   /* ---------- hero ---------- */
 
-  .hero{ padding-top:clamp(40px, 6vw, 72px); padding-bottom:0; }
+  .hero{ padding:0; }
 
   .hero-grid{
     display:grid;
     grid-template-columns:1fr;
     gap:0;
+    padding:clamp(40px, 6vw, 80px) var(--gutter) 0;
   }
 
   .hero-copy{
@@ -217,6 +220,18 @@
     margin-bottom:clamp(36px, 5vw, 58px);
   }
   .services-head p{ color:var(--ink-soft); }
+
+  @media (min-width:960px){
+    .services-head{
+      max-width:none;
+      display:grid;
+      grid-template-columns:minmax(0, 1.45fr) minmax(0, 1fr);
+      gap:clamp(40px, 5vw, 80px);
+      align-items:end;
+    }
+    .services-head .head-copy{ grid-column:2; }
+    .services-head .head-copy p{ margin:0; max-width:46ch; }
+  }
 
   .grid{
     display:grid;
@@ -272,6 +287,16 @@
     align-items:start;
   }
 
+  .contact-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:clamp(32px, 4vw, 64px);
+    align-items:start;
+  }
+  @media (min-width:860px){
+    .contact-grid{ grid-template-columns:minmax(0, 1fr) minmax(0, 1.1fr); }
+  }
+
   dl.details{
     margin:0;
     border-top:1px solid var(--rule);
@@ -323,7 +348,7 @@
   .map{
     border:1px solid var(--rule);
     width:100%;
-    height:340px;
+    height:clamp(320px, 36vw, 520px);
     filter:grayscale(.35) sepia(.12);
   }
 
@@ -350,12 +375,14 @@
 
   @media (min-width:860px){
     .hero-grid{
-      grid-template-columns:1fr 1fr;
-      gap:clamp(40px, 5vw, 72px);
+      grid-template-columns:minmax(0, 1fr) minmax(0, 1.1fr);
+      gap:clamp(40px, 5vw, 80px);
       align-items:center;
+      /* left column lines up with the rest of the page, image bleeds right */
+      padding:clamp(48px, 6vw, 88px) 0 0 var(--edge);
     }
-    .hero-copy{ padding-bottom:clamp(40px, 6vw, 72px); }
-    .hero-figure img{ height:clamp(420px, 44vw, 620px); }
+    .hero-copy{ padding-bottom:clamp(48px, 6vw, 88px); }
+    .hero-figure img{ height:clamp(440px, 46vw, 680px); }
     .visit-grid{ grid-template-columns:1.05fr .95fr; }
   }
 
@@ -390,7 +417,7 @@
 <main id="top">
 
   <section class="hero">
-    <div class="wrap hero-grid">
+    <div class="hero-grid">
       <div class="hero-copy">
         <p class="eyebrow">Lerwick &middot; Shetland</p>
         <h1>Kitchens &amp;<em>Bathrooms</em></h1>
@@ -413,13 +440,17 @@
   <section class="services" id="what-we-do">
     <div class="wrap">
       <div class="services-head">
-        <p class="eyebrow">What we do</p>
-        <hr class="rule">
-        <h2>Everything for the room</h2>
-        <p style="margin-top:18px;">
-          Come in and see the ranges in person &mdash; doors, worktops, tiles, panels and flooring,
-          all under one roof at the Toll Clock.
-        </p>
+        <div>
+          <p class="eyebrow">What we do</p>
+          <hr class="rule">
+          <h2>Everything for the room</h2>
+        </div>
+        <div class="head-copy">
+          <p style="margin-top:18px;">
+            Come in and see the ranges in person &mdash; doors, worktops, tiles, panels and flooring,
+            all under one roof at the Toll Clock.
+          </p>
+        </div>
       </div>
 
       <div class="grid">
@@ -509,11 +540,17 @@
 
   <section id="contact" style="background:var(--cream-warm); border-top:1px solid var(--rule);">
     <div class="wrap">
-      <p class="eyebrow">Get in touch</p>
-      <hr class="rule">
-      <h2>Contact</h2>
+      <div class="contact-grid">
+      <div>
+        <p class="eyebrow">Get in touch</p>
+        <hr class="rule">
+        <h2>Contact</h2>
+        <p style="margin-top:18px; color:var(--ink-soft); max-width:40ch;">
+          Give us a ring, send an email, or just come in &mdash; whichever suits.
+        </p>
+      </div>
 
-      <dl class="details" style="margin-top:34px; max-width:720px;">
+      <dl class="details">
         <div>
           <dt>Phone</dt>
           <dd><a href="tel:+441595696138">01595 696138</a></dd>
@@ -531,6 +568,7 @@
           <dd><a href="https://www.facebook.com/p/Caledonia-Interiors-Kitchens-and-Bathrooms-Shetland-100090238176871/" target="_blank" rel="noopener">Caledonia Interiors &mdash; Kitchens and Bathrooms Shetland</a></dd>
         </div>
       </dl>
+      </div>
     </div>
   </section>
 
