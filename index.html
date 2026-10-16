@@ -264,16 +264,34 @@
   .suppliers ul{
     list-style:none;
     margin:0;
-    padding:0;
-    display:flex;
-    flex-wrap:wrap;
-    gap:12px 30px;
+    padding:0 0 0 1px;
+    display:grid;
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+  }
+  @media (min-width:640px){
+    .suppliers ul{ grid-template-columns:repeat(3, minmax(0, 1fr)); }
   }
   .suppliers li{
+    margin:0 0 -1px -1px;
+    border:1px solid var(--rule);
+    background:var(--cream-warm);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    height:110px;
+    padding:20px 22px;
     font-family:var(--serif);
     font-size:1.2rem;
     color:var(--teal-deep);
-    line-height:1.3;
+    text-align:center;
+    line-height:1.2;
+  }
+  .suppliers img{
+    display:block;
+    max-width:min(100%, 180px);
+    max-height:52px;
+    width:auto;
+    height:auto;
   }
 
   /* ---------- measure-up strip ---------- */
@@ -510,14 +528,14 @@
       <div class="suppliers">
         <p class="eyebrow">Our suppliers</p>
         <ul>
-          <li>Ashley Ann Kitchens</li>
-          <li>Barwick Bathrooms</li>
-          <li>KB Bathrooms</li>
-          <li>Aberdeen Tile Distributors</li>
-          <li>Eastbrook Bathrooms</li>
-          <li>Bathrooms to Love</li>
-          <li>Showerwall</li>
-          <li>Fibo Panels</li>
+          <li><img src="suppliers/ashley-ann.svg" alt="Ashley Ann Kitchens" loading="lazy"></li>
+          <li><img src="suppliers/barwick.png" alt="Barwick Bathrooms" loading="lazy"></li>
+          <li><img src="suppliers/kb-bathrooms.svg" alt="KB Bathrooms" loading="lazy"></li>
+          <li><img src="suppliers/aberdeen-tile.png" alt="Aberdeen Tile Distributors" loading="lazy"></li>
+          <li><img src="suppliers/eastbrook.png" alt="Eastbrook Bathrooms" loading="lazy"></li>
+          <li><img src="suppliers/bathrooms-to-love.png" alt="Bathrooms to Love" loading="lazy"></li>
+          <li><img src="suppliers/showerwall.png" alt="Showerwall" loading="lazy"></li>
+          <li><img src="suppliers/fibo.png" alt="Fibo Panels" loading="lazy"></li>
           <li>Laminates Dundee</li>
         </ul>
       </div>
